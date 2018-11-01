@@ -1,0 +1,28 @@
+<div class="modal-content modal-content-size-m p-4">
+    <div class="modal-header">
+      <h4>{{post.id ? 'Edit' : 'Create'}} Post</h4>
+    </div>
+    <div class="modal-body">
+      <div class="form-width">
+        <p *ngIf="message" class="alert alert-danger">{{message}}</p>
+
+        <form [formGroup]="postForm" (ngSubmit)="submit()">
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" class="form-control" formControlName="title" [(ngModel)]="formdata.title" placeholder="Title" />
+            <small *ngIf="postForm.controls['title'].hasError('required') && postForm.controls['title'].touched" class="mat-text-warn">You
+              must add title.</small>
+          </div>
+          <div class="form-group">
+            <label>Body</label>
+            <textarea class="form-control" rows="6" formControlName="body" [(ngModel)]="formdata.body" placeholder="body"></textarea>
+            <small *ngIf="postForm.controls['body'].hasError('required') && postForm.controls['body'].touched" class="mat-text-warn">You
+              must add post body.</small>
+          </div>
+          <button type="submit" class="btn btn-primary pull-right" [disabled]="!postForm.valid">{{post.id ? 'Update' : 'Create'}}</button>
+          <button type="button" class="btn btn-primary" (click)="close()">Close</button>
+        </form>
+      </div>
+      
+    </div>
+  </div>

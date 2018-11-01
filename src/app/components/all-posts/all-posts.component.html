@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="col text-right"><h2><button class="btn btn-primary" (click)="createPost()">Create New Post</button></h2></div>
+      <div class="col"><h2>All Posts</h2></div>
+    </div>
+    <p *ngIf="message.text" class="alert" [ngClass]="{'alert-danger' :message.error , 'alert-success' :!message.error}">{{message.text}}</p>
+    
+    <div class="row">
+        <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Body</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let post of allposts">
+                <td>{{post.id}}</td>
+                <td>{{post.title}}</td>
+                <td>{{post.body}}</td>
+                <td><a href="#" (click)="deletePost(post.id)">Delete</a>   <a href="#"  (click)=editPost(post)>Edit</a></td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+
+</div>
